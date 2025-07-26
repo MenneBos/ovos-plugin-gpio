@@ -1,6 +1,6 @@
-# PHAL Switches Plugin
-Enables switch inputs for volume, mute, and action button. Current implementation
-assumes switches match the SJ201 configuration of pull-up momentary switches (GND activated)
+# GPIO Plugin
+Enables GPIO inputs for volume, mute, and command button. Current implementation
+assumes raspberry pi GPIO port with physical pull up and pull down resistors.
 and a mute toggle where GND == unmuted.
 
 ## Default Pin Configuration
@@ -8,5 +8,5 @@ and a mute toggle where GND == unmuted.
 |-----|---------------|
 | 22  | Volume Up     |
 | 23  | Volume Down   |
-| 24  | Action Button |
+| 17  | Action Button |
 | 25  | Mute Switch   |

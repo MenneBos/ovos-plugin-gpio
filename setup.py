@@ -56,13 +56,13 @@ with open(path.join(BASE_PATH, "version.py"), "r",
                 version = line.split("'")[1]
 
 setup(
-    name='neon-phal-plugin-switches',
+    name='voice-relay-phal-plugin-gpio',
     version=version,
     license='BSD-3',
-    author='Neongecko',
-    author_email='developers@neon.ai',
-    url='https://github.com/NeonGeckoCom/neon-phal-plugin-switches',
-    description='Hardware Switch Interface',
+    author='Menne Bos',
+    author_email='',
+    url='https://github.com/MenneBos/voice-relay-phal-plugin-gpio',
+    description='GPIO Interface',
     long_description=long_description,
     long_description_content_type="text/markdown",
     install_requires=get_requirements('requirements.txt'),

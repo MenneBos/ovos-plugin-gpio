@@ -33,22 +33,20 @@ from time import sleep
 from ovos_plugin_manager.phal import PHALPlugin
 from ovos_plugin_manager.hardware.switches import AbstractSwitches
 from ovos_utils.log import LOG
-from ovos_bus_client.message import Message
-from sj201_interface.revisions import detect_sj201_revision
+from hivemind_bus_client.message import Message
 
-
-class SwitchValidator:
-    @staticmethod
-    def validate(_=None):
-        # TODO: More generic validation
-        return detect_sj201_revision() is not None
-
+#from sj201_interface.revisions import detect_sj201_revision
+#class SwitchValidator:
+#    @staticmethod
+#    def validate(_=None):
+#        # TODO: More generic validation
+#        return detect_sj201_revision() is not None
 
 class SwitchInputs(PHALPlugin):
-    validator = SwitchValidator
+    #validator = SwitchValidator
 
     def __init__(self, bus=None, config=None):
-        super().__init__(bus=bus, name="neon-phal-plugin-switches",
+        super().__init__(bus=bus, name="voice_relay-phal-plugin-switches",
                          config=config)
         # TODO: Read pins from configuration
         self.switches = GPIOSwitches(action_callback=self.on_button_press,
@@ -101,9 +99,9 @@ class SwitchInputs(PHALPlugin):
 
 class GPIOSwitches(AbstractSwitches, ABC):
     def __init__(self, action_callback, volup_callback, voldown_callback,
-                 mute_callback, unmute_callback, volup_pin: int = 22,
-                 voldown_pin: int = 23, action_pin: int = 24,
-                 mute_pin: int = 25, sw_active_state: int = 0,
+                 mute_callback, unmute_callback, volup_pin: int = 17,
+                 voldown_pin: int = 16, action_pin: int = 27,
+                 mute_pin: int = 26, sw_active_state: int = 0,
                  sw_muted_state: int = 1):
         self.on_action = action_callback
         self.on_vol_up = volup_callback
