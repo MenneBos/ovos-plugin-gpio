@@ -60,7 +60,7 @@ class SwitchInputs(PHALPlugin):
 class GPIOSwitches(AbstractSwitches):
     def __init__(self, action_callback, volup_callback, voldown_callback,
                  mute_callback, unmute_callback,
-                 volup_pin=22, voldown_pin=23, action_pin=24, mute_pin=25,
+                 volup_pin=22, voldown_pin=23, action_pin=27, mute_pin=25,
                  sw_active_state=False, sw_muted_state=True, bounce_time=0.1):
         # sw_active_state: False for pull-up (active low), True for pull-down (active high)
         self.action_btn = Button(action_pin, pull_up=not sw_active_state, bounce_time=bounce_time)
