@@ -64,6 +64,7 @@ class SwitchInputs(PHALPlugin):
             self.bus.emit(Message('mycroft.mic.mute'))
 
         self.bus.on('mycroft.mic.status', self.on_mic_status)
+        LOG.debug("GPIO Phal initiated")
 
     def on_mic_status(self, message):
         if GPIO.input(self.switches.mute_pin) == self.switches.muted:
@@ -71,14 +72,15 @@ class SwitchInputs(PHALPlugin):
         else:
             msg_type = 'mycroft.mic.unmute'
         self.bus.emit(message.reply(msg_type))
+        LOG.debug("Mute/umate message on internal fakebus")
 
     def on_button_press(self):
-        LOG.info("Listen button pressed")
         if GPIO.input(self.switches.mute_pin) != self.switches.muted:
             self.bus.emit(Message("mycroft.mic.listen"))
         else:
             self.bus.emit(Message("mycroft.mic.error",
                                   {"error": "mic_sw_muted"}))
+        LOG.debug("Mic listening message send to internal bus")
 
     def on_button_volup_press(self):
         LOG.debug("VolumeUp button pressed")
@@ -117,6 +119,7 @@ class GPIOSwitches(AbstractSwitches, ABC):
         self._muted = sw_muted_state
 
         self.setup_gpio()
+        LOG.debug("GPIO Pins initiated")
 
     @property
     def muted(self):
@@ -163,25 +166,32 @@ class GPIOSwitches(AbstractSwitches, ABC):
                               GPIO.BOTH,
                               callback=self.handle_mute,
                               bouncetime=debounce)
+        
+        LOG.debug("Pin event callbacks setup done")
 
     def handle_action(self, _):
         if GPIO.input(self.action_pin) == self._active:
             self.on_action()
+            LOG.debug("Pin event triggers for command")
 
     def handle_vol_up(self, _):
         if GPIO.input(self.vol_up_pin) == self._active:
             self.on_vol_up()
+            LOG.debug("Pin event triggers for volume up")
 
     def handle_vol_down(self, _):
         if GPIO.input(self.vol_dn_pin) == self._active:
             self.on_vol_down()
+            LOG.debug("Pin event triggers for volume down")
 
     def handle_mute(self, _):
         sleep(0.05)
         if GPIO.input(self.mute_pin) == self._muted:
             self.on_mute()
+            LOG.debug("Pin event triggers for mute")
         else:
             self.on_unmute()
+            LOG.debug("Pin event triggers for unmute")
 
     @property
     def capabilities(self) -> dict:
