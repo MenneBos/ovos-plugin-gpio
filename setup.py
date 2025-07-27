@@ -7,6 +7,8 @@ PLUGIN_PKG = PLUGIN_NAME.replace("-", "_")
 PLUGIN_CLAZZ = "SwitchInputs" # same is class name in __init__.py
 PLUGIN_CONFIGS = "MyPluginConfig"
 
+BASE_PATH = path.abspath(path.dirname(__file__))
+
 PLUGIN_ENTRY_POINT = f'{PLUGIN_NAME} = {PLUGIN_PKG}:{PLUGIN_CLAZZ}'
 CONFIG_ENTRY_POINT = f'{PLUGIN_NAME}.config = {PLUGIN_PKG}:{PLUGIN_CONFIGS}'
 
