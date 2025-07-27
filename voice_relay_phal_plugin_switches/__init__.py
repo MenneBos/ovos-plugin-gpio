@@ -62,9 +62,10 @@ class SwitchInputs(PHALPlugin):
 
         if GPIO.input(self.switches.mute_pin) == self.switches.muted:
             self.bus.emit(Message('mycroft.mic.mute'))
+            LOG.debug("Send message to mute the mic")
 
         self.bus.on('mycroft.mic.status', self.on_mic_status)
-        LOG.debug("GPIO Phal initiated")
+        LOG.debug("ask mic status on internal fakebus")
 
     def on_mic_status(self, message):
         if GPIO.input(self.switches.mute_pin) == self.switches.muted:

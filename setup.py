@@ -29,7 +29,6 @@
 from setuptools import setup, find_packages
 from os import path, getenv
 
-PLUGIN_ENTRY_POINT = "neon-phal-plugin-switches=neon_phal_plugin_switches:SwitchInputs"
 BASE_PATH = path.abspath(path.dirname(__file__))
 
 
@@ -56,17 +55,21 @@ with open(path.join(BASE_PATH, "version.py"), "r",
                 version = line.split("'")[1]
 
 setup(
-    name='voice-relay-phal-plugin-gpio',
+    name='ovos-plugin-gpio',
     version=version,
     license='BSD-3',
     author='Menne Bos',
     author_email='',
-    url='https://github.com/MenneBos/voice-relay-phal-plugin-gpio',
+    url='https://github.com/MenneBos/ovos-plugin-gpio',
     description='GPIO Interface',
     long_description=long_description,
     long_description_content_type="text/markdown",
     install_requires=get_requirements('requirements.txt'),
     packages=find_packages(),
     include_package_data=True,
-    entry_points={'ovos.plugin.phal': PLUGIN_ENTRY_POINT}
+    entry_points={
+        'ovos.plugin.phal': [
+            "voice_relay-phal-plugin-switches = voice_relay_phal_plugin_switches:SwitchInputs"
+        ]
+    }
 )
