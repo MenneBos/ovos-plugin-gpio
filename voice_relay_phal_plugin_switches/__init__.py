@@ -102,9 +102,9 @@ class SwitchInputs(PHALPlugin):
 
 class GPIOSwitches(AbstractSwitches, ABC):
     def __init__(self, action_callback, volup_callback, voldown_callback,
-                 mute_callback, unmute_callback, volup_pin: int = 17,
-                 voldown_pin: int = 16, action_pin: int = 24,
-                 mute_pin: int = 26, sw_active_state: int = 0,
+                 mute_callback, unmute_callback, volup_pin: int = 22,
+                 voldown_pin: int = 23, action_pin: int = 24,
+                 mute_pin: int = 25, sw_active_state: int = 0,
                  sw_muted_state: int = 1):
         self.on_action = action_callback
         self.on_vol_up = volup_callback
