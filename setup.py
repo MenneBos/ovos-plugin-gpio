@@ -24,7 +24,7 @@ def get_requirements(requirements_filename: str):
 setup(
     name=PLUGIN_NAME,
     version='0.1.0',
-    packages=[PLUGIN_PKG],
+    packages=find_packages(),
     install_requires=get_requirements('requirements.txt'),
     keywords='ovos plugin phal gpio',
     entry_points={PLUGIN_TYPE: PLUGIN_ENTRY_POINT, f'{PLUGIN_TYPE}.config': CONFIG_ENTRY_POINT}
