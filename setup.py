@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 from os import path
 
-PLUGIN_TYPE = "ovos.plugin.phal"  # Adjust based on the plugin type
+PLUGIN_TYPE = "opm.phal"  # Adjust based on the plugin type
 PLUGIN_NAME = "ovos-plugin-gpio"
 PLUGIN_PKG = PLUGIN_NAME.replace("-", "_")
 PLUGIN_CLAZZ = "SwitchInputs" # same is class name in __init__.py
