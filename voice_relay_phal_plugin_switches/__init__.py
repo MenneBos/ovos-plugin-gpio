@@ -3,7 +3,7 @@ from time import sleep
 from ovos_plugin_manager.phal import PHALPlugin
 from ovos_plugin_manager.hardware.switches import AbstractSwitches
 from ovos_utils.log import LOG
-from hivemind_bus_client.message import Message
+from ovos_bus_client.message import Message
 
 class SwitchInputs(PHALPlugin):
     def __init__(self, bus=None, config=None):
@@ -36,9 +36,10 @@ class SwitchInputs(PHALPlugin):
     def on_button_press(self):
         if not self.switches.is_muted():
             self.bus.emit(Message("mycroft.mic.listen"))
+            LOG.debug("Mic listening message sent to internal bus")
         else:
             self.bus.emit(Message("mycroft.mic.error", {"error": "mic_sw_muted"}))
-        LOG.debug("Mic listening message sent to internal bus")
+
 
     def on_button_volup_press(self):
         LOG.debug("VolumeUp button pressed")
