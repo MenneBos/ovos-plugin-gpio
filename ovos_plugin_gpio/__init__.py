@@ -61,13 +61,14 @@ class SwitchInputs(PHALPlugin):
 class GPIOSwitches(AbstractSwitches):
     def __init__(self, action_callback, volup_callback, voldown_callback,
                  mute_callback, unmute_callback,
-                 volup_pin=22, voldown_pin=23, action_pin=27, mute_pin=25,
-                 sw_active_state=False, sw_muted_state=True, bounce_time=0.1):
-        # sw_active_state: False for pull-up (active low), True for pull-down (active high)
+                 volup_pin=22, voldown_pin=23, action_pin=27, mute_pin=26, 
+                 sw_muted_state=True, bounce_time=0.2):
+        # Push buttons with external pull-up (active high)
         self.action_btn = Button(action_pin, pull_up=False, bounce_time=bounce_time)
-        self.volup_btn = Button(volup_pin, pull_up=not sw_active_state, bounce_time=bounce_time)
-        self.voldown_btn = Button(voldown_pin, pull_up=not sw_active_state, bounce_time=bounce_time)
-        self.mute_btn = Button(mute_pin, pull_up=not sw_active_state, bounce_time=bounce_time)
+        self.mute_btn = Button(mute_pin, pull_up=False, bounce_time=bounce_time)
+        # Volume push buttons with external pull-down (active Low)
+        self.volup_btn = Button(volup_pin, pull_up=True, bounce_time=bounce_time)
+        self.voldown_btn = Button(voldown_pin, pull_up=True, bounce_time=bounce_time)
 
         self._muted_state = sw_muted_state
         self._is_muted = False
