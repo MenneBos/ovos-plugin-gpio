@@ -10,3 +10,22 @@ and a mute toggle where GND == unmuted.
 | 23  | Volume Down   |
 | 17  | Action Button |
 | 25  | Mute Switch   |
+
+
+## install
+
+Install libraries: gpiozero and lgpio \
+
+Check if access is permitted for the gpio groups
+```
+ls -l /dev/gpiochip*
+```
+
+Make sue ovos is part of the gpio group \
+```
+groups
+sudo usermod -aG gpio $(whoami)
+```
+Logout and login in again \
+
+
