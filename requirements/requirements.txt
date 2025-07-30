@@ -1,4 +1,4 @@
 ovos-plugin-manager
 ovos-utils
-ovos-bus-hivemind_bus_client
+ovos-bus-client
 gpiozero
