@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 from os import path
 
 PLUGIN_TYPE = "ovos.plugin.phal"  # Adjust based on the plugin type
-PLUGIN_NAME = "ovos_plugin_gpio"
+PLUGIN_NAME = "hivemind_plugin_gpio"
 PLUGIN_PKG = PLUGIN_NAME.replace("-", "_")
 PLUGIN_CLAZZ = "GPIOInputs" # same is class name in __init__.py
 PLUGIN_CONFIGS = "MyPluginConfig"
@@ -26,7 +26,7 @@ setup(
     version='0.1.0',
     packages=find_packages(),
     install_requires=get_requirements('requirements.txt'),
-    keywords='ovos plugin phal gpio',
+    keywords='ovos hivemind plugin phal gpio',
     entry_points={PLUGIN_TYPE: PLUGIN_ENTRY_POINT, f'{PLUGIN_TYPE}.config': CONFIG_ENTRY_POINT}
 )
 

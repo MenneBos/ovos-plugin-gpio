@@ -1,5 +1,4 @@
 from gpiozero import Button
-from lgio
 from ovos_plugin_manager.phal import PHALPlugin
 from ovos_utils.log import LOG
 from ovos_bus_client.message import Message
